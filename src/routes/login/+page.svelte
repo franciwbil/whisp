@@ -12,8 +12,17 @@
     let password: string;
 
     async function login() {
-        pb.collection('users').authWithPassword(email, password);
+        try
+        { 
+            await pb.collection('users').authWithPassword(email, password);
+            goto('/chat');
+        } 
+        catch (err)
+        {
+            console.error(err);
+        }
     }
+    
 </script>
 
 {#if $currentUser}
